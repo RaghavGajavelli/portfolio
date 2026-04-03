@@ -232,39 +232,55 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="absolute bottom-20 left-8 md:left-16 lg:left-24 z-30 flex flex-col gap-4"
+          className="absolute bottom-6 left-4 sm:bottom-14 sm:left-8 md:bottom-20 md:left-16 lg:left-24 z-30 flex flex-col gap-3 sm:gap-4"
         >
           {/* eyebrow */}
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-amber-400/40" />
-            <span className="font-mono text-[10px] tracking-[0.35em] text-amber-400/50 uppercase">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="h-px w-5 sm:w-8 bg-amber-400/40" />
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.35em] text-amber-400/50 uppercase">
               Tech × Creativity × Human Story
             </span>
           </div>
 
           {/* Scrambled name — large */}
-          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-none">
+          <div className="text-[1.9rem] sm:text-4xl md:text-6xl lg:text-7xl leading-none">
             <ScrambledName />
           </div>
 
-          {/* Scroll cue */}
+          {/* Mobile-only: compact social icons below name */}
+          <div className="flex items-center gap-2 sm:hidden mt-1">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-white/25 active:text-white/60 transition-all duration-200"
+              >
+                <Icon className="h-3 w-3" />
+              </a>
+            ))}
+          </div>
+
+          {/* Scroll cue — hidden on mobile */}
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="mt-6 text-white/20"
+            className="mt-4 sm:mt-6 text-white/20 hidden sm:block"
           >
             <ArrowDown className="h-4 w-4" />
           </motion.div>
         </motion.div>
 
-        {/* ── Contact — bottom-right of hero ── */}
+        {/* ── Contact — bottom-right, tablet/desktop only ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1.2 }}
-          className="absolute bottom-10 right-8 md:right-16 lg:right-24 z-30 flex flex-col items-center gap-5"
+          className="hidden sm:flex absolute bottom-8 sm:bottom-10 right-6 sm:right-8 md:right-16 lg:right-24 z-30 flex-col items-center gap-4 sm:gap-5"
         >
-          <div className="relative h-[64px] w-[200px]">
+          <div className="relative h-[56px] sm:h-[64px] w-[180px] sm:w-[200px]">
             <LiquidButton
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white/80"
               onClick={() => { window.location.href = "mailto:raghavgajavelli@gmail.com" }}
@@ -273,7 +289,7 @@ export default function Portfolio() {
             </LiquidButton>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             {socials.map(({ icon: Icon, label, href }) => (
               <a
                 key={label}
@@ -281,9 +297,9 @@ export default function Portfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] text-white/25 hover:text-white/70 hover:border-white/20 transition-all duration-200 hover:scale-110"
+                className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] text-white/25 hover:text-white/70 hover:border-white/20 transition-all duration-200 hover:scale-110"
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Icon className="h-3 sm:h-3.5 w-3 sm:w-3.5" />
               </a>
             ))}
           </div>
