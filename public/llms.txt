@@ -1,0 +1,31 @@
+# Raghav Gajavelli
+
+> Tech × Creativity × Human Story
+
+Raghav Gajavelli is a Senior Product Manager and Lead Systems Architect based in Hoofddorp (Amsterdam area), Netherlands. Originally from South India, he moved to Amsterdam in 2018.
+
+## About
+
+Raghav has 17+ years of experience building complex AI and enterprise systems for large organisations. He combines enterprise-scale product and architecture expertise with creative work in portrait photography and writing. Family: wife, two kids, a dog brought from India.
+
+## Work
+
+- Senior Product Manager & Lead Systems Architect — AI-powered knowledge management systems deployed at scale across large customer service operations
+- Founder/Author — "Enough is Enough" newsletter on Substack (AI, systems thinking, personal growth for business owners)
+- Portrait Photographer — The Portrait Experience project: photographing entrepreneurs across the Netherlands
+- Open source — Visual Cryptography GUI (GitHub: RaghavGajavelli)
+- Writer — Content about AI tools, productivity systems, and building in public
+
+## Skills
+
+Product Strategy, AI Prototyping & Automation, Lead Systems Architecture, Portrait Photography, Visual Storytelling, Creative Writing, Content Creation, Systems Thinking, Figma, Notion
+
+## Links
+
+- Website: https://raghavgajavelli.com
+- LinkedIn: https://www.linkedin.com/in/raghav-gajavelli/
+- Newsletter (Substack): https://raghavgajavelli.substack.com/
+- Photography: https://hashtagraghav.com/
+- GitHub: https://github.com/RaghavGajavelli
+- Instagram: https://www.instagram.com/raghavgajavelli/
+- YouTube: https://www.youtube.com/@RaghavGajavelli

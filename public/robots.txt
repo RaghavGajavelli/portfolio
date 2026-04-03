@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow full access for indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://raghavgajavelli.com/sitemap.xml
