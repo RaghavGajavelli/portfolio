@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import {
   ExternalLink,
   Code2,
@@ -195,6 +195,39 @@ function GrainOverlay() {
 
 export default function Portfolio() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const rainLayerRef = useRef<HTMLDivElement>(null)
+  const robotLayerRef = useRef<HTMLDivElement>(null)
+  const nameLayerRef = useRef<HTMLDivElement>(null)
+
+  // Parallax tilt for mobile — gyroscope moves each layer at a different depth speed
+  useEffect(() => {
+    if (typeof window === "undefined" || !("ontouchstart" in window)) return
+    let curX = 0, curY = 0, tgtX = 0, tgtY = 0, raf: number
+
+    const onOrientation = (e: DeviceOrientationEvent) => {
+      tgtX = Math.max(-1, Math.min(1, (e.gamma ?? 0) / 25))
+      tgtY = Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 25))
+    }
+
+    const tick = () => {
+      curX += (tgtX - curX) * 0.07
+      curY += (tgtY - curY) * 0.07
+      if (rainLayerRef.current)
+        rainLayerRef.current.style.transform = `translate(${curX * 5}px, ${curY * 3}px)`
+      if (robotLayerRef.current)
+        robotLayerRef.current.style.transform = `translate(${curX * 18}px, ${curY * 12}px)`
+      if (nameLayerRef.current)
+        nameLayerRef.current.style.transform = `translate(${curX * 3}px, ${curY * 2}px)`
+      raf = requestAnimationFrame(tick)
+    }
+
+    window.addEventListener("deviceorientation", onOrientation, { passive: true })
+    raf = requestAnimationFrame(tick)
+    return () => {
+      window.removeEventListener("deviceorientation", onOrientation)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#080808] text-white selection:bg-amber-400/30 selection:text-amber-200">
@@ -206,10 +239,12 @@ export default function Portfolio() {
         className="relative w-full min-h-screen overflow-hidden bg-[#080808]"
       >
         {/* Layer 0 — raining letters */}
-        <RainingBackground />
+        <div ref={rainLayerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+          <RainingBackground />
+        </div>
 
         {/* Layer 1 — Spline robot, right half */}
-        <div className="absolute inset-0 z-10">
+        <div ref={robotLayerRef} className="absolute inset-0 z-10" style={{ willChange: "transform" }}>
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
@@ -228,11 +263,16 @@ export default function Portfolio() {
         />
 
         {/* Layer 3 — scrambled name, bottom-left */}
+        <div
+          ref={nameLayerRef}
+          className="absolute bottom-6 left-4 sm:bottom-14 sm:left-8 md:bottom-20 md:left-16 lg:left-24 z-30"
+          style={{ willChange: "transform" }}
+        >
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="absolute bottom-6 left-4 sm:bottom-14 sm:left-8 md:bottom-20 md:left-16 lg:left-24 z-30 flex flex-col gap-3 sm:gap-4"
+          className="flex flex-col gap-3 sm:gap-4"
         >
           {/* eyebrow */}
           <div className="flex items-center gap-2 sm:gap-3">
@@ -272,6 +312,7 @@ export default function Portfolio() {
             <ArrowDown className="h-4 w-4" />
           </motion.div>
         </motion.div>
+        </div>
 
         {/* ── Contact — bottom-right, tablet/desktop only ── */}
         <motion.div
