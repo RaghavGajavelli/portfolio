@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Raghav Gajavelli — Portfolio",
-  description: "Senior Product Manager, Lead Systems Architect, Photographer. Building AI tools at scale. Based in Amsterdam.",
+  description: "Tech × Creative × Human Story",
 };
 
 export default function RootLayout({
