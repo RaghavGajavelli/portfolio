@@ -244,11 +244,14 @@ export default function Portfolio() {
         </div>
 
         {/* Layer 1 — Spline robot, right half */}
-        <div ref={robotLayerRef} className="absolute inset-0 z-10" style={{ willChange: "transform" }}>
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
+        {/* Static wrapper shifts robot up on mobile; tilt ref sits inside so transforms don't conflict */}
+        <div className="absolute inset-0 z-10 -translate-y-[10%] sm:translate-y-0">
+          <div ref={robotLayerRef} className="w-full h-full" style={{ willChange: "transform" }}>
+            <SplineScene
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
+          </div>
         </div>
 
         {/* Fade robot left edge so it blends with letters */}
@@ -265,7 +268,7 @@ export default function Portfolio() {
         {/* Layer 3 — scrambled name, bottom-left */}
         <div
           ref={nameLayerRef}
-          className="absolute bottom-6 left-4 sm:bottom-14 sm:left-8 md:bottom-20 md:left-16 lg:left-24 z-30"
+          className="absolute bottom-32 left-4 sm:bottom-14 sm:left-8 md:bottom-20 md:left-16 lg:left-24 z-30"
           style={{ willChange: "transform" }}
         >
         <motion.div
