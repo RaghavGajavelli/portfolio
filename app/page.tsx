@@ -1,65 +1,294 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { motion } from "framer-motion"
+import { useRef } from "react"
+import {
+  ExternalLink,
+  Code2,
+  ImageIcon,
+  Briefcase,
+  Mail,
+  MapPin,
+  Play,
+  Camera,
+  Cpu,
+  PenLine,
+  Lock,
+  Bike,
+  Heart,
+  ArrowDown,
+  ArrowUpRight,
+} from "lucide-react"
+import { LiquidButton } from "@/components/ui/liquid-glass-button"
+import { SplineScene } from "@/components/ui/splite"
+import { Spotlight } from "@/components/ui/spotlight"
+import { RainingBackground, ScrambledName } from "@/components/ui/modern-animated-hero-section"
+import { PortraitGallery } from "@/components/portrait-gallery"
+import { ScrollShowcase } from "@/components/scroll-showcase"
+import { CinematicBreak } from "@/components/cinematic-break"
+import { ReelStrip } from "@/components/reel-strip"
+
+// ── data ──────────────────────────────────────────────────────────────────────
+
+const projects = [
+  {
+    id: 1,
+    year: "2025",
+    title: "AI Knowledge Platform",
+    category: "Product · AI",
+    description:
+      "Led the ground-up rebuild of a knowledge management platform for 10,000+ customer service agents. Defined product vision, ran user research, and delivered an AI-embedded system that reduced average handling time by 9% within 3 months.",
+    tags: ["Product Strategy", "User Research", "AI", "Pegasystems", "Cross-functional"],
+    stats: [
+      { label: "Agents served", value: "10,000+" },
+      { label: "AHT reduction", value: "9%" },
+      { label: "Team size", value: "15" },
+    ],
+    icon: Cpu,
+    color: "from-violet-500/20 to-indigo-500/10",
+    accent: "#7c3aed",
+    link: null,
+  },
+  {
+    id: 2,
+    year: "2025",
+    title: "Dog Ears — Substack",
+    category: "Writing · Content",
+    description:
+      "A newsletter on strategic thinking, AI, and personal growth. Writing about the ideas that stick — the ones worth folding over the corner of the page. AI tools, productivity systems, content creation, and lessons from building and failing.",
+    tags: ["AI", "Productivity", "Substack", "Systems Thinking"],
+    stats: [],
+    icon: PenLine,
+    color: "from-amber-500/20 to-orange-500/10",
+    accent: "#f59e0b",
+    link: "https://raghavgajavelli.substack.com/",
+  },
+  {
+    id: 3,
+    year: "2024",
+    title: "Photography & Art",
+    category: "Creative · Visual",
+    description:
+      "Portraits that reveal character. Travel that captures feeling. Currently planning The Portrait Experience — photographing 10 entrepreneurs across the Netherlands for an exhibition where they meet as strangers connected through portraits.",
+    tags: ["Portraits", "Travel", "Vermeer", "Film Photography", "Exhibition"],
+    stats: [],
+    icon: Camera,
+    color: "from-rose-500/20 to-pink-500/10",
+    accent: "#f43f5e",
+    link: "https://hashtagraghav.com/",
+  },
+  {
+    id: 4,
+    year: "2009",
+    title: "Visual Cryptography",
+    category: "Engineering · Security",
+    description:
+      "Reviving a college cryptography project because good ideas deserve a second life. Splits a number into two meaningless images — overlay them and the secret appears. Rebuilt with a modern cross-platform GUI using seven-segment display patterns.",
+    tags: ["Java", "Cryptography", "Open Source", "Side Project"],
+    stats: [],
+    icon: Lock,
+    color: "from-emerald-500/20 to-teal-500/10",
+    accent: "#10b981",
+    link: "https://github.com/RaghavGajavelli/segment-visual-cryptography",
+  },
+  {
+    id: 5,
+    year: "2018",
+    title: "Life in Amsterdam",
+    category: "Personal · Story",
+    description:
+      "Born in Southern India. Amsterdam became home in 2018. Now in Hoofddorp with a wife, two kids, and a dog brought from India. Made a video helping travellers bring pets when moving abroad.",
+    tags: ["Amsterdam", "Family", "Immigration", "India"],
+    stats: [],
+    icon: Heart,
+    color: "from-blue-500/20 to-sky-500/10",
+    accent: "#3b82f6",
+    link: null,
+  },
+  {
+    id: 6,
+    year: "2026",
+    title: "Motorcycling Europe",
+    category: "Adventure · Travel",
+    description:
+      "Motorcycling is how I move through the world. Less footprint, more connection. Criss-crossed South India on two wheels. Life brought me to the Netherlands before I could go north — 2026 is the year I get back on the bike and ride through Europe.",
+    tags: ["Motorcycling", "South India", "Europe", "Adventure"],
+    stats: [],
+    icon: Bike,
+    color: "from-orange-500/20 to-yellow-500/10",
+    accent: "#f97316",
+    link: null,
+  },
+]
+
+const skills = [
+  "Product Strategy & Roadmaps",
+  "AI Prototyping & Automation",
+  "Portrait Photography",
+  "Visual Storytelling",
+  "Creative Copywriting",
+  "Content Creation",
+  "Figma · Notion · Jira",
+  "Adobe Lightroom · Photoshop",
+  "n8n · Lovable · Gamma",
+]
+
+const testimonials = [
+  {
+    name: "Manon van Willenswaard",
+    role: "Process Manager",
+    company: "ING",
+    linkedin: "https://www.linkedin.com/in/manonvanwillenswaard/",
+    quote:
+      "Raghav is a highly knowledgeable and experienced Lead System Architect. He can build the bridge between Business and IT, is easy to work with, and does not hesitate to give his opinion to improve the work. I experienced Raghav as a dedicated and self-motivated individual who takes up responsibilities and never fears a challenge.",
+    initials: "MV",
+    color: "from-blue-400 to-indigo-500",
+  },
+  {
+    name: "Maria Guider",
+    role: "Product Manager",
+    company: "Pegasystems",
+    linkedin: "https://www.linkedin.com/in/maria-guider-1599214/",
+    quote:
+      "I have had the pleasure of working with Raghava for 3+ years and am happy to recommend him. He has extensive technical expertise and works well within a team as both a leader and as a member. He has a very courteous and professional demeanor and manages his work most efficiently.",
+    initials: "MG",
+    color: "from-violet-400 to-purple-500",
+  },
+]
+
+const socials = [
+  { icon: Mail, label: "Email", href: "mailto:raghavgajavelli@gmail.com" },
+  { icon: Briefcase, label: "LinkedIn", href: "https://www.linkedin.com/in/raghav-gajavelli/" },
+  { icon: ImageIcon, label: "Instagram", href: "https://www.instagram.com/raghavgajavelli/" },
+  { icon: Play, label: "YouTube", href: "https://www.youtube.com/@RaghavGajavelli" },
+  { icon: Code2, label: "GitHub", href: "https://github.com/RaghavGajavelli" },
+]
+
+// ── animation variants ─────────────────────────────────────────────────────────
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] as [number, number, number, number] } },
+}
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+
+// ── components ────────────────────────────────────────────────────────────────
+
+function GrainOverlay() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div
+      className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "128px",
+      }}
+    />
+  )
+}
+
+// ── page ──────────────────────────────────────────────────────────────────────
+
+export default function Portfolio() {
+  const heroRef = useRef<HTMLDivElement>(null)
+
+  return (
+    <main className="min-h-screen bg-[#080808] text-white selection:bg-amber-400/30 selection:text-amber-200">
+      <GrainOverlay />
+
+      {/* ── HERO ── */}
+      <section
+        ref={heroRef}
+        className="relative w-full min-h-screen overflow-hidden bg-[#080808]"
+      >
+        {/* Layer 0 — raining letters */}
+        <RainingBackground />
+
+        {/* Layer 1 — Spline robot, right half */}
+        <div className="absolute inset-0 z-10">
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+
+        {/* Fade robot left edge so it blends with letters */}
+        <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-[#080808] via-[#080808]/50 to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-40 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+
+        {/* Spotlight */}
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="white"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Layer 3 — scrambled name, bottom-left */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 1.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          className="absolute bottom-20 left-8 md:left-16 lg:left-24 z-30 flex flex-col gap-4"
+        >
+          {/* eyebrow */}
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-amber-400/40" />
+            <span className="font-mono text-[10px] tracking-[0.35em] text-amber-400/50 uppercase">
+              Tech × Creativity × Human Story
+            </span>
+          </div>
+
+          {/* Scrambled name — large */}
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-none">
+            <ScrambledName />
+          </div>
+
+          {/* Scroll cue */}
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="mt-6 text-white/20"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+            <ArrowDown className="h-4 w-4" />
+          </motion.div>
+        </motion.div>
+
+        {/* ── Contact — bottom-right of hero ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1.2 }}
+          className="absolute bottom-10 right-8 md:right-16 lg:right-24 z-30 flex flex-col items-center gap-5"
+        >
+          <div className="relative h-[64px] w-[200px]">
+            <LiquidButton
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white/80"
+              onClick={() => { window.location.href = "mailto:raghavgajavelli@gmail.com" }}
+            >
+              Get in Touch
+            </LiquidButton>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] text-white/25 hover:text-white/70 hover:border-white/20 transition-all duration-200 hover:scale-110"
+              >
+                <Icon className="h-3.5 w-3.5" />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+    </main>
+  )
 }
