@@ -309,7 +309,7 @@ export default function Portfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-white/25 active:text-white/60 transition-all duration-200"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.18] text-white/45 active:text-amber-400/80 transition-all duration-200"
               >
                 <Icon className="h-3 w-3" />
               </a>
@@ -334,9 +334,15 @@ export default function Portfolio() {
           transition={{ delay: 1.2, duration: 1.2 }}
           className="hidden sm:flex absolute bottom-8 sm:bottom-10 right-6 sm:right-8 md:right-16 lg:right-24 z-30 flex-col items-center gap-4 sm:gap-5"
         >
+          {/* Button with ambient amber glow behind it */}
           <div className="relative h-[56px] sm:h-[64px] w-[180px] sm:w-[200px]">
+            {/* Glow bloom — sits behind the button */}
+            <div
+              className="absolute inset-0 rounded-full blur-xl pointer-events-none"
+              style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.22) 0%, transparent 70%)" }}
+            />
             <LiquidButton
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium text-white/80"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-semibold text-white"
               onClick={() => { window.location.href = "mailto:raghavgajavelli@gmail.com" }}
             >
               Get in Touch
@@ -351,7 +357,7 @@ export default function Portfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.08] text-white/25 hover:text-white/70 hover:border-white/20 transition-all duration-200 hover:scale-110"
+                className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/[0.18] text-white/45 hover:text-amber-400/80 hover:border-amber-400/30 hover:shadow-[0_0_10px_rgba(245,158,11,0.2)] transition-all duration-300 hover:scale-110"
               >
                 <Icon className="h-3 sm:h-3.5 w-3 sm:w-3.5" />
               </a>
