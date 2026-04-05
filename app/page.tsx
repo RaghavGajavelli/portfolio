@@ -24,6 +24,8 @@ import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
 import { RainingBackground, ScrambledName } from "@/components/ui/modern-animated-hero-section"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
+import { CardWithPaths } from "@/components/ui/card-with-paths"
+import { NeuralNetIcon, ApertureIcon, WritingIcon, ArchitectureIcon } from "@/components/ui/animated-card-icons"
 import { PortraitGallery } from "@/components/portrait-gallery"
 import { ScrollShowcase } from "@/components/scroll-showcase"
 import { CinematicBreak } from "@/components/cinematic-break"
@@ -366,7 +368,7 @@ export default function Portfolio() {
         </div>
         <ContainerScroll
           titleComponent={
-            <div className="flex flex-col items-center gap-4 pb-4 sm:pb-6 md:pb-10 px-4">
+            <div className="flex flex-col items-center gap-3 pb-3 sm:pb-5 px-4">
               <div className="flex items-center gap-3">
                 <div className="h-px w-6 sm:w-8 bg-amber-400/40" />
                 <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.35em] text-amber-400/50 uppercase">
@@ -374,7 +376,7 @@ export default function Portfolio() {
                 </span>
                 <div className="h-px w-6 sm:w-8 bg-amber-400/40" />
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight text-center">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white leading-[1.15] tracking-tight text-center">
                 Systems. Stories.{" "}
                 <span className="text-white/25">Built to last.</span>
               </h2>
@@ -383,61 +385,50 @@ export default function Portfolio() {
         >
           {/* ── Card interior — 2×2 work grid ── */}
           <div className="h-full w-full grid grid-cols-2 grid-rows-2 gap-px bg-white/[0.04]">
+            {/* Brand palette — amber #f59e0b | violet #818cf8 | silver #94a3b8 */}
             {[
               {
                 eyebrow: "AI Product",
                 title: "Knowledge Platform",
                 stat: "10,000+ agents",
+                description: "Built an AI knowledge system for 10,000+ agents. Reduced handling time 9% in 3 months. Enterprise scale, human design.",
                 icon: Cpu,
-                accent: "#7c3aed",
+                accent: "#818cf8",
+                animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={80} />,
               },
               {
                 eyebrow: "Photography",
                 title: "Portrait Experience",
                 stat: "Netherlands",
+                description: "Photographing 10 entrepreneurs across the Netherlands. Strangers connected through portraits. An exhibition in the making.",
                 icon: Camera,
                 accent: "#f59e0b",
+                animatedIcon: <ApertureIcon gradientId="ap" from="#f59e0b" to="#94a3b8" size={80} />,
               },
               {
                 eyebrow: "Writing",
                 title: "Enough is Enough",
                 stat: "Substack newsletter",
+                description: "AI, systems, and clarity for people done waiting. One system per week. No fluff. Real tools from a Product Thinker who has shipped at scale.",
                 icon: PenLine,
-                accent: "#f43f5e",
+                accent: "#94a3b8",
+                animatedIcon: <WritingIcon gradientId="wr" from="#f59e0b" to="#818cf8" size={80} />,
               },
               {
                 eyebrow: "Architecture",
-                title: "Lead Systems",
+                title: "System Design",
                 stat: "17+ years",
+                description: "17 years designing complex systems across enterprise. Bridge between business and engineering. Built to last, not to impress.",
                 icon: Briefcase,
-                accent: "#10b981",
+                accent: "#818cf8",
+                animatedIcon: <ArchitectureIcon gradientId="ar" from="#94a3b8" to="#f59e0b" size={80} />,
               },
-            ].map(({ eyebrow, title, stat, icon: Icon, accent }) => (
-              <div
-                key={title}
-                className="relative flex flex-col justify-between p-3 sm:p-5 md:p-8 bg-[#111111] overflow-hidden group"
-              >
-                {/* Accent glow */}
-                <div
-                  className="absolute -top-8 -right-8 w-24 h-24 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity duration-500"
-                  style={{ background: accent }}
-                />
-                <div className="flex flex-col gap-2">
-                  <span
-                    className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase"
-                    style={{ color: accent + "99" }}
-                  >
-                    {eyebrow}
-                  </span>
-                  <p className="text-white/90 text-sm md:text-base font-medium leading-snug">
-                    {title}
-                  </p>
-                </div>
-                <div className="flex items-end justify-between">
-                  <span className="text-white/25 text-xs font-mono">{stat}</span>
-                  <Icon className="h-4 w-4 md:h-5 md:w-5 text-white/10 group-hover:text-white/30 transition-colors duration-300" />
-                </div>
-              </div>
+            ].map((item) => (
+              <CardWithPaths
+                key={item.title}
+                {...item}
+                onViewClick={() => {}}
+              />
             ))}
           </div>
         </ContainerScroll>
