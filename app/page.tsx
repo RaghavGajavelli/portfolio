@@ -234,11 +234,16 @@ export default function Portfolio() {
     <main className="min-h-screen bg-[#080808] text-white selection:bg-amber-400/30 selection:text-amber-200">
       <GrainOverlay />
 
-      {/* ── HERO ── */}
+      {/* ── HERO — sticky so robot stays visible as work section rises over it ── */}
+      {/* NOTE: overflow-hidden cannot be on the sticky element itself — breaks sticky in all browsers */}
+      {/* Clipping is handled by the inner overflow-hidden wrapper div instead */}
       <section
         ref={heroRef}
-        className="relative w-full min-h-screen overflow-hidden bg-[#080808]"
+        className="relative w-full min-h-screen bg-[#080808] sticky top-0 z-0"
       >
+        {/* Clip wrapper — keeps raining letters + robot inside hero bounds */}
+        <div className="absolute inset-0 overflow-hidden">
+
         {/* Layer 0 — raining letters */}
         <div ref={rainLayerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
           <RainingBackground />
@@ -257,14 +262,16 @@ export default function Portfolio() {
 
         {/* Fade robot left edge so it blends with letters */}
         <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-[#080808] via-[#080808]/50 to-transparent" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 h-40 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+        {/* Bottom fade — tall so raining letters dissolve gradually */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-80 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent pointer-events-none" />
 
         {/* Spotlight */}
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="white"
         />
+
+        </div>{/* ── end clip wrapper ── */}
 
         {/* Layer 3 — scrambled name, bottom-left */}
         <div
@@ -351,21 +358,25 @@ export default function Portfolio() {
         </motion.div>
       </section>
 
-      {/* ── SCROLL SHOWCASE ── */}
-      <section className="bg-[#080808]">
+      {/* ── SCROLL SHOWCASE — z-10 rises over sticky hero ── */}
+      <section className="relative z-10 bg-[#080808]">
+        {/* Raining background — clipped inside its own overflow-hidden wrapper */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-35">
+          <RainingBackground />
+        </div>
         <ContainerScroll
           titleComponent={
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 pb-4 sm:pb-6 md:pb-10 px-4">
               <div className="flex items-center gap-3">
-                <div className="h-px w-8 bg-amber-400/40" />
-                <span className="font-mono text-[10px] tracking-[0.35em] text-amber-400/50 uppercase">
+                <div className="h-px w-6 sm:w-8 bg-amber-400/40" />
+                <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.35em] text-amber-400/50 uppercase">
                   The Work
                 </span>
-                <div className="h-px w-8 bg-amber-400/40" />
+                <div className="h-px w-6 sm:w-8 bg-amber-400/40" />
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight text-center">
                 Systems. Stories.{" "}
-                <span className="text-white/30">Built to last.</span>
+                <span className="text-white/25">Built to last.</span>
               </h2>
             </div>
           }
@@ -404,7 +415,7 @@ export default function Portfolio() {
             ].map(({ eyebrow, title, stat, icon: Icon, accent }) => (
               <div
                 key={title}
-                className="relative flex flex-col justify-between p-5 md:p-8 bg-[#111111] overflow-hidden group"
+                className="relative flex flex-col justify-between p-3 sm:p-5 md:p-8 bg-[#111111] overflow-hidden group"
               >
                 {/* Accent glow */}
                 <div
