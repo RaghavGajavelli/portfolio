@@ -394,8 +394,8 @@ export default function Portfolio() {
             {/* Brand palette — amber #f59e0b | violet #818cf8 | silver #94a3b8 */}
             {[
               {
-                eyebrow: "AI Product",
-                title: "Knowledge Platform",
+                eyebrow: "AI Products",
+                title: "Booking.com",
                 stat: "10,000+ agents",
                 description: "Design AI Products at Booking.com — 10,000+ agents, real outcomes. Enterprise scale, human design.",
                 icon: Cpu,
