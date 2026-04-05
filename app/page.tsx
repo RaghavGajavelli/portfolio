@@ -397,7 +397,7 @@ export default function Portfolio() {
                 eyebrow: "AI Product",
                 title: "Knowledge Platform",
                 stat: "10,000+ agents",
-                description: "Built an AI knowledge system for 10,000+ agents. Reduced handling time 9% in 3 months. Enterprise scale, human design.",
+                description: "Design AI Products at Booking.com — 10,000+ agents, real outcomes. Enterprise scale, human design.",
                 icon: Cpu,
                 accent: "#818cf8",
                 animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={80} />,
