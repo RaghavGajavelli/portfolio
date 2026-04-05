@@ -23,6 +23,7 @@ import { LiquidButton } from "@/components/ui/liquid-glass-button"
 import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
 import { RainingBackground, ScrambledName } from "@/components/ui/modern-animated-hero-section"
+import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import { PortraitGallery } from "@/components/portrait-gallery"
 import { ScrollShowcase } from "@/components/scroll-showcase"
 import { CinematicBreak } from "@/components/cinematic-break"
@@ -348,6 +349,87 @@ export default function Portfolio() {
             ))}
           </div>
         </motion.div>
+      </section>
+
+      {/* ── SCROLL SHOWCASE ── */}
+      <section className="bg-[#080808]">
+        <ContainerScroll
+          titleComponent={
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="h-px w-8 bg-amber-400/40" />
+                <span className="font-mono text-[10px] tracking-[0.35em] text-amber-400/50 uppercase">
+                  The Work
+                </span>
+                <div className="h-px w-8 bg-amber-400/40" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                Systems. Stories.{" "}
+                <span className="text-white/30">Built to last.</span>
+              </h2>
+            </div>
+          }
+        >
+          {/* ── Card interior — 2×2 work grid ── */}
+          <div className="h-full w-full grid grid-cols-2 grid-rows-2 gap-px bg-white/[0.04]">
+            {[
+              {
+                eyebrow: "AI Product",
+                title: "Knowledge Platform",
+                stat: "10,000+ agents",
+                icon: Cpu,
+                accent: "#7c3aed",
+              },
+              {
+                eyebrow: "Photography",
+                title: "Portrait Experience",
+                stat: "Netherlands",
+                icon: Camera,
+                accent: "#f59e0b",
+              },
+              {
+                eyebrow: "Writing",
+                title: "Enough is Enough",
+                stat: "Substack newsletter",
+                icon: PenLine,
+                accent: "#f43f5e",
+              },
+              {
+                eyebrow: "Architecture",
+                title: "Lead Systems",
+                stat: "17+ years",
+                icon: Briefcase,
+                accent: "#10b981",
+              },
+            ].map(({ eyebrow, title, stat, icon: Icon, accent }) => (
+              <div
+                key={title}
+                className="relative flex flex-col justify-between p-5 md:p-8 bg-[#111111] overflow-hidden group"
+              >
+                {/* Accent glow */}
+                <div
+                  className="absolute -top-8 -right-8 w-24 h-24 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity duration-500"
+                  style={{ background: accent }}
+                />
+                <div className="flex flex-col gap-2">
+                  <span
+                    className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase"
+                    style={{ color: accent + "99" }}
+                  >
+                    {eyebrow}
+                  </span>
+                  <p className="text-white/90 text-sm md:text-base font-medium leading-snug">
+                    {title}
+                  </p>
+                </div>
+                <div className="flex items-end justify-between">
+                  <span className="text-white/25 text-xs font-mono">{stat}</span>
+                  <Icon className="h-4 w-4 md:h-5 md:w-5 text-white/10 group-hover:text-white/30 transition-colors duration-300" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </ContainerScroll>
       </section>
     </main>
   )
