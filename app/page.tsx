@@ -400,6 +400,7 @@ export default function Portfolio() {
                 description: "Design AI Products at Booking.com — 10,000+ agents, real outcomes. Enterprise scale, human design.",
                 icon: Cpu,
                 accent: "#818cf8",
+                href: "https://www.linkedin.com/in/raghav-gajavelli/",
                 animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={80} />,
               },
               {
@@ -409,6 +410,7 @@ export default function Portfolio() {
                 description: "Photographing 10 entrepreneurs across the Netherlands. Strangers connected through portraits. An exhibition in the making.",
                 icon: Camera,
                 accent: "#f59e0b",
+                href: "https://www.instagram.com/raghavgajavelli/",
                 animatedIcon: <ApertureIcon gradientId="ap" from="#f59e0b" to="#94a3b8" size={80} />,
               },
               {
@@ -418,6 +420,7 @@ export default function Portfolio() {
                 description: "AI, systems, and clarity for people done waiting. One system per week. No fluff. Real tools from a Product Thinker who has shipped at scale.",
                 icon: PenLine,
                 accent: "#94a3b8",
+                href: "https://raghavgajavelli.substack.com/",
                 animatedIcon: <WritingIcon gradientId="wr" from="#f59e0b" to="#818cf8" size={80} />,
               },
               {
@@ -427,6 +430,7 @@ export default function Portfolio() {
                 description: "17 years designing complex systems across enterprise. Bridge between business and engineering. Built to last, not to impress.",
                 icon: Briefcase,
                 accent: "#818cf8",
+                href: "https://www.linkedin.com/in/raghav-gajavelli/",
                 animatedIcon: <ArchitectureIcon gradientId="ar" from="#94a3b8" to="#f59e0b" size={80} />,
               },
             ].map((item) => (

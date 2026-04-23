@@ -51,9 +51,10 @@ interface CardWithPathsProps {
   title: string;
   stat: string;
   description: string;
-  icon: React.ElementType;           // lucide icon (kept for type compat, not rendered)
-  animatedIcon: React.ReactNode;     // custom animated SVG icon
+  icon: React.ElementType;
+  animatedIcon: React.ReactNode;
   accent: string;
+  href?: string;
   onViewClick?: () => void;
 }
 
@@ -64,7 +65,7 @@ export function CardWithPaths({
   description,
   animatedIcon,
   accent,
-  onViewClick,
+  href,
 }: CardWithPathsProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [spotPos, setSpotPos] = useState({ x: 0, y: 0 });
@@ -77,12 +78,17 @@ export function CardWithPaths({
     setSpotPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   }, []);
 
+  const handleCardClick = useCallback(() => {
+    if (href) window.open(href, "_blank", "noopener,noreferrer");
+  }, [href]);
+
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleCardClick}
       className="relative flex flex-col h-full bg-[#111111] overflow-hidden cursor-pointer"
     >
       {/* BackgroundPaths — 40% opacity on hover */}
@@ -181,12 +187,31 @@ export function CardWithPaths({
               </p>
             </div>
 
-            {/* Middle: description — readable, not too dim */}
+            {/* Middle: description */}
             <p className="font-mono text-[11px] sm:text-xs leading-relaxed tracking-wide text-white/65">
               {description}
             </p>
 
-            {/* View button — hidden until V3 project pages are built */}
+            {/* View button */}
+            {href && (
+              <motion.a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.2 }}
+                className="inline-flex items-center gap-1.5 self-start font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 hover:scale-105"
+                style={{
+                  color: accent,
+                  borderColor: accent + "50",
+                  background: accent + "12",
+                }}
+              >
+                View <span className="text-[11px]">↗</span>
+              </motion.a>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
