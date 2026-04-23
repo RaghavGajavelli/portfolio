@@ -400,8 +400,8 @@ export default function Portfolio() {
                 description: "Design AI Products at Booking.com — 10,000+ agents, real outcomes. Enterprise scale, human design.",
                 icon: Cpu,
                 accent: "#818cf8",
-                href: "https://www.linkedin.com/in/raghav-gajavelli/",
-                animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={80} />,
+                href: "https://www.booking.com",
+                animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={60} />,
               },
               {
                 eyebrow: "Advisory",
@@ -411,7 +411,7 @@ export default function Portfolio() {
                 icon: Briefcase,
                 accent: "#f59e0b",
                 href: "/advisory",
-                animatedIcon: <ApertureIcon gradientId="ap2" from="#f59e0b" to="#94a3b8" size={80} />,
+                animatedIcon: <ApertureIcon gradientId="ap2" from="#f59e0b" to="#94a3b8" size={60} />,
               },
               {
                 eyebrow: "Writing",
@@ -421,7 +421,7 @@ export default function Portfolio() {
                 icon: PenLine,
                 accent: "#94a3b8",
                 href: "https://raghavgajavelli.substack.com/",
-                animatedIcon: <WritingIcon gradientId="wr" from="#f59e0b" to="#818cf8" size={80} />,
+                animatedIcon: <WritingIcon gradientId="wr" from="#f59e0b" to="#818cf8" size={60} />,
               },
               {
                 eyebrow: "Architecture",
@@ -431,7 +431,7 @@ export default function Portfolio() {
                 icon: Briefcase,
                 accent: "#818cf8",
                 href: "https://www.linkedin.com/in/raghav-gajavelli/",
-                animatedIcon: <ArchitectureIcon gradientId="ar" from="#94a3b8" to="#f59e0b" size={80} />,
+                animatedIcon: <ArchitectureIcon gradientId="ar" from="#94a3b8" to="#f59e0b" size={60} />,
               },
             ].map((item) => (
               <CardWithPaths
