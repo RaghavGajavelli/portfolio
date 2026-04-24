@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Raghav Gajavelli",
   },
   description:
-    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
+    "Tech × Creativity × Human Story. Senior Business Solutions Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
   keywords: [
     "Raghav Gajavelli",
     "raghavgajavelli",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     url: "https://raghavgajavelli.com",
     title: "Raghav Gajavelli — Tech × Creativity × Human Story",
     description:
-      "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
+      "Senior Business Solutions Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
     siteName: "Raghav Gajavelli",
     images: [
       {
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Raghav Gajavelli — Tech × Creativity × Human Story",
     description:
-      "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale.",
+      "Senior Business Solutions Architect based in Amsterdam. Building AI tools at scale.",
     images: ["/portraits/portrait-bw.jpg"],
   },
   robots: {
@@ -75,9 +75,9 @@ const jsonLd = {
   name: "Raghav Gajavelli",
   url: "https://raghavgajavelli.com",
   image: "https://raghavgajavelli.com/portraits/portrait-bw.jpg",
-  jobTitle: "Senior Product Manager & Lead Systems Architect",
+  jobTitle: "Senior Business Solutions Architect",
   description:
-    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam, Netherlands. Building AI tools at scale. Advisory. Systems thinking.",
+    "Tech × Creativity × Human Story. Senior Business Solutions Architect based in Amsterdam, Netherlands. Building AI tools at scale. Advisory. Systems thinking.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Hoofddorp",
