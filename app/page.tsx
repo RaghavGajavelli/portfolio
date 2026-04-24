@@ -400,7 +400,7 @@ export default function Portfolio() {
                 description: "Design AI Products at Booking.com — 10,000+ agents, real outcomes. Enterprise scale, human design.",
                 icon: Cpu,
                 accent: "#818cf8",
-                href: "https://www.booking.com",
+                href: "/booking",
                 animatedIcon: <NeuralNetIcon gradientId="nn" from="#818cf8" to="#94a3b8" size={60} />,
               },
               {

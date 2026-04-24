@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     template: "%s | Raghav Gajavelli",
   },
   description:
-    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Photography. Systems thinking.",
+    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
   keywords: [
     "Raghav Gajavelli",
     "raghavgajavelli",
     "Product Manager Amsterdam",
     "Lead Systems Architect",
     "AI Product Manager Netherlands",
-    "Portrait Photographer Amsterdam",
+    "Digital Transformation Advisory",
     "Tech Creativity Human Story",
     "Senior PM Netherlands",
   ],
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     url: "https://raghavgajavelli.com",
     title: "Raghav Gajavelli — Tech × Creativity × Human Story",
     description:
-      "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Photography. Systems thinking.",
+      "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale. Advisory. Systems thinking.",
     siteName: "Raghav Gajavelli",
     images: [
       {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Raghav Gajavelli — Tech × Creativity × Human Story",
     description:
       "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale.",
