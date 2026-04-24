@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useScroll, useTransform, useSpring, motion, MotionValue } from "framer-motion";
+
+const springConfig = { stiffness: 80, damping: 28, restDelta: 0.001 };
 
 export const ContainerScroll = ({
   titleComponent,
@@ -11,43 +13,41 @@ export const ContainerScroll = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // "start end" → animation begins as element enters viewport from bottom
-  // "end start" → animation ends as element leaves viewport from top
-  // This gives the full viewport height as animation runway regardless of container size
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start 0.95", "end 0.1"],
   });
 
-  const [isMobile, setIsMobile] = React.useState(false);
+  // Initialise from window immediately on client — prevents hydration snap
+  const [isMobile, setIsMobile] = React.useState(() => {
+    if (typeof window !== "undefined") return window.innerWidth <= 768;
+    return false;
+  });
 
   React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
-  const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
-  };
+  const mobileScale: [number, number] = [0.88, 1];
+  const desktopScale: [number, number] = [1.04, 1];
 
-  // Animate over the first half of scroll range so card is flat well before element exits
-  const rotate = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 0.5], [0, -30]);
+  const rotateRaw  = useTransform(scrollYProgress, [0, 0.55], [14, 0]);
+  const scaleRaw   = useTransform(scrollYProgress, [0, 0.55], isMobile ? mobileScale : desktopScale);
+  const translateRaw = useTransform(scrollYProgress, [0, 0.55], [0, -24]);
+
+  const rotate    = useSpring(rotateRaw,    springConfig);
+  const scale     = useSpring(scaleRaw,     springConfig);
+  const translate = useSpring(translateRaw, springConfig);
 
   return (
     <div
-      className="h-[44rem] md:h-[58rem] flex items-center justify-center relative p-2 md:p-20"
+      className="min-h-screen flex items-center justify-center relative px-4 py-20 md:px-20 md:py-28"
       ref={containerRef}
     >
       <div
-        className="py-6 md:py-16 w-full relative"
+        className="w-full relative"
         style={{ perspective: "1000px" }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
@@ -88,6 +88,7 @@ export const Card = ({
       style={{
         rotateX: rotate,
         scale,
+        willChange: "transform",
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
