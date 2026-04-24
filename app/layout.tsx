@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     siteName: "Raghav Gajavelli",
     images: [
       {
-        url: "/portraits/portrait-689.jpg",
-        width: 900,
-        height: 900,
+        url: "/portraits/portrait-bw.jpg",
+        width: 800,
+        height: 1000,
         alt: "Raghav Gajavelli",
       },
     ],
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Raghav Gajavelli — Tech × Creativity × Human Story",
     description:
       "Senior Product Manager and Lead Systems Architect based in Amsterdam. Building AI tools at scale.",
-    images: ["/portraits/portrait-689.jpg"],
+    images: ["/portraits/portrait-bw.jpg"],
   },
   robots: {
     index: true,
@@ -74,10 +74,10 @@ const jsonLd = {
   "@type": "Person",
   name: "Raghav Gajavelli",
   url: "https://raghavgajavelli.com",
-  image: "https://raghavgajavelli.com/portraits/portrait-689.jpg",
+  image: "https://raghavgajavelli.com/portraits/portrait-bw.jpg",
   jobTitle: "Senior Product Manager & Lead Systems Architect",
   description:
-    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam, Netherlands. Building AI tools at scale. Portrait photographer. Writer.",
+    "Tech × Creativity × Human Story. Senior Product Manager and Lead Systems Architect based in Amsterdam, Netherlands. Building AI tools at scale. Advisory. Systems thinking.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Hoofddorp",
@@ -96,7 +96,7 @@ const jsonLd = {
     "Product Management",
     "AI Systems",
     "Lead Systems Architecture",
-    "Portrait Photography",
+    "Digital Transformation Advisory",
     "Content Creation",
     "Systems Thinking",
   ],

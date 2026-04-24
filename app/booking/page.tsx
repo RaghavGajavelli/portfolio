@@ -17,21 +17,28 @@ const stagger = {
 
 const responsibilities = [
   {
-    area: "Product Strategy",
-    body: "Defined the product vision and long-term roadmap for the new platform. Aligned leadership and stakeholders on priorities, scope, and success metrics across a global organisation.",
+    area: "Product Strategy & Vision",
+    body: "Defined the product vision and long-term roadmap for the new Knowledge Management platform. Aligned leadership and stakeholders on priorities, scope, and success metrics across a global organisation.",
   },
   {
-    area: "Discovery & Research",
+    area: "Discovery & User Research",
     body: "Ran user research with frontline agents worldwide to understand pain points, workflows, and knowledge gaps. Translated insights into product requirements and prioritised features by impact.",
   },
   {
     area: "Delivery & Execution",
-    body: "Wrote detailed specs, managed the backlog, and led sprint planning. Worked hands-on with design and engineering to shape UX and technical implementation. Led a cross-functional team of 15.",
+    body: "Wrote detailed specs, managed the backlog, and led sprint planning. Worked hands-on with design and engineering to shape UX and technical implementation. Led a cross-functional team of 15 across product, design, engineering, and operations.",
   },
   {
     area: "Vendor Partnership",
-    body: "Managed an external technology partnership. Went beyond coordination — actively shaped the vendor's product roadmap by providing improvement suggestions required at this scale.",
+    body: "Managed external partnership with Pegasystems. Went beyond coordination — actively shaped their product roadmap by providing improvement suggestions for features required at Booking.com's scale.",
   },
+]
+
+const objectives = [
+  "Reduce Average Handling Time by improving how agents access knowledge",
+  "Improve Customer Satisfaction through faster, more accurate resolutions",
+  "Ship a new AI-embedded Knowledge Management system built for enterprise scale — 10,000+ agents",
+  "Create a foundation for future AI capabilities: journey recommendations, smart suggestions, and expansion to other verticals",
 ]
 
 const outcomes = [
@@ -46,11 +53,32 @@ const outcomes = [
     sub: "Global deployment",
   },
   {
-    n: "15",
-    label: "Person\ncross-functional team",
-    sub: "Product · Design · Engineering · Ops",
+    n: "Live",
+    label: "Platform still\nscaling",
+    sub: "Expanding to new capabilities",
   },
 ]
+
+function BookingLogo() {
+  return (
+    <svg viewBox="0 0 300 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto">
+      <text
+        x="0" y="36"
+        fontFamily="'Helvetica Neue', Arial, sans-serif"
+        fontSize="38"
+        fontWeight="800"
+        fill="white"
+      >Booking</text>
+      <text
+        x="162" y="36"
+        fontFamily="'Helvetica Neue', Arial, sans-serif"
+        fontSize="38"
+        fontWeight="800"
+        fill="#70b8ff"
+      >.com</text>
+    </svg>
+  )
+}
 
 export default function BookingPage() {
   return (
@@ -95,15 +123,15 @@ export default function BookingPage() {
             </h1>
 
             <p className="text-white/40 text-base sm:text-lg leading-relaxed max-w-xl">
-              I led the ground-up rebuild of the Knowledge Management platform at Booking.com — embedding AI to make information discovery faster, smarter, and scalable across a global customer service organisation.
+              Booking.com's Customer Service organisation supports over 10,000 agents worldwide. The existing knowledge management system was fragmented — agents struggled to find accurate information quickly, leading to longer handling times and inconsistent customer experiences. I was brought in to lead a ground-up rebuild.
             </p>
           </motion.div>
 
-          {/* ── CONTEXT QUOTE ── */}
+          {/* ── PROBLEM QUOTE ── */}
           <motion.div variants={fadeUp} className="border border-white/[0.08] bg-white/[0.02] rounded-sm p-8 sm:p-10">
             <div className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/30 mb-5">The problem</div>
             <blockquote className="font-serif text-lg sm:text-xl text-white/80 leading-relaxed italic">
-              "The existing system was fragmented. Agents struggled to find accurate information quickly. Every second of uncertainty in a customer service interaction has a cost — in time, in satisfaction, in trust. The platform needed to be rebuilt from the ground up with AI at its core."
+              "Every second of uncertainty in a customer service interaction has a cost — in time, in satisfaction, in trust. The platform needed to be rebuilt from the ground up with AI at its core."
             </blockquote>
           </motion.div>
 
@@ -118,20 +146,16 @@ export default function BookingPage() {
             ))}
           </motion.div>
 
-          {/* ── WHAT I BUILT ── */}
+          {/* ── OBJECTIVES ── */}
           <motion.div variants={fadeUp} className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/25">01</span>
               <div className="h-px flex-1 bg-white/[0.06]" />
-              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/25">What I built</span>
+              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/25">Objectives</span>
             </div>
 
             <div className="flex flex-col gap-5">
-              {[
-                "A new Knowledge Management platform designed for enterprise scale — 10,000+ customer service agents across global operations. Built to surface the right information at the right moment, reducing the cognitive load on every agent interaction.",
-                "AI was embedded directly into the information architecture. Not layered on top. The system learns from usage patterns, improves search relevance over time, and lays the foundation for journey recommendations and smart suggestions.",
-                "The platform shipped and went live. It is still operating, still scaling, and expanding to new capabilities. That is the measure of real product work — not a demo, not a prototype, but something that runs at scale in production.",
-              ].map((line, i) => (
+              {objectives.map((line, i) => (
                 <div key={i} className="flex gap-4">
                   <span className="text-violet-400/50 mt-1 flex-shrink-0">→</span>
                   <p className="text-white/55 leading-relaxed text-sm sm:text-base">{line}</p>
@@ -155,16 +179,16 @@ export default function BookingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/[0.06]">
               {responsibilities.map((r) => (
                 <div key={r.area} className="bg-[#080808] p-6 flex flex-col gap-3">
-                  <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-violet-400/50">
+                  <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-violet-400/60">
                     {r.area}
                   </div>
-                  <p className="text-white/40 text-sm leading-relaxed">{r.body}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{r.body}</p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* ── PLATFORM FUTURE ── */}
+          {/* ── WHAT CAME NEXT ── */}
           <motion.div variants={fadeUp} className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/25">03</span>
@@ -191,34 +215,22 @@ export default function BookingPage() {
 
             <div className="border-l-2 border-violet-400/30 pl-6 py-2">
               <p className="text-white/45 text-sm leading-relaxed italic font-serif">
-                The platform going live was not the end. It was the proof of concept for what enterprise AI adoption actually looks like when done properly — with user research, real specs, and a team that ships.
+                Positive agent feedback confirmed improved confidence in finding accurate information. The platform is still live, still scaling, and expanding to new capabilities — that is the measure of real product work.
               </p>
             </div>
           </motion.div>
 
-          {/* ── BOOKING.COM LINK ── */}
+          {/* ── BUILT AT — BOOKING.COM LOGO LINK ── */}
           <motion.div variants={fadeUp} className="flex flex-col gap-4 items-start">
-            <p className="text-white/30 text-sm font-mono tracking-wide uppercase text-[10px]">Built at</p>
+            <p className="font-mono text-[9px] tracking-[0.25em] uppercase text-white/25">Built at</p>
             <a
               href="https://www.booking.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 border border-white/[0.08] hover:border-violet-400/30 bg-white/[0.02] hover:bg-violet-400/5 px-6 py-4 rounded-sm transition-all duration-300"
+              className="group inline-flex items-center gap-4 border border-white/[0.08] hover:border-violet-400/30 bg-white/[0.02] hover:bg-violet-400/5 px-6 py-5 rounded-sm transition-all duration-300"
+              aria-label="Visit Booking.com"
             >
-              {/* Booking.com wordmark — SVG inline */}
-              <svg viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                <text
-                  x="0" y="19"
-                  fontFamily="Georgia, serif"
-                  fontSize="20"
-                  fontWeight="bold"
-                  fill="#003580"
-                  className="opacity-0"
-                >booking.com</text>
-              </svg>
-              <span className="font-serif text-lg text-white/50 group-hover:text-white/80 transition-colors duration-300 tracking-tight">
-                booking.com
-              </span>
+              <BookingLogo />
               <span className="text-white/20 group-hover:text-violet-400/60 transition-colors duration-300 text-sm">↗</span>
             </a>
           </motion.div>
